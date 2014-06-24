@@ -23,7 +23,7 @@ function listToArray(list)
 {
   array = []
   rest = list
-  while (rest && rest.value) {
+  while (rest) {
     array.push(rest.value);
     rest = rest.rest;
   }
