@@ -13,13 +13,27 @@ function deepEqual(value1, value2)
 {
   if(value1 === value2)
     return true;
+  
   if(value1 !== null && value2 !== null && typeof value1 == 'object' && typeof value2 == 'object') {
+
+    if(countProperties(value1) != countProperties(value2))
+      return false;
+
     for(property in value1) {
       if(!deepEqual(value1[property],value2[property]))
         return false;
     }
+
     return true;
   }
 
   return false; 
+}
+
+function countProperties(object)
+{
+  count = 0;
+  for(p in object)
+    count++;
+  return count;
 }
