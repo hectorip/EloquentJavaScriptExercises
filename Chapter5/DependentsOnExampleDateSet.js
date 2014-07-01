@@ -71,11 +71,47 @@ ancestry.forEach(function(person) {
 
 function averageDiff(ancestry)
 {
-	withMother = ancestry.filter(function(person) { 
+	hasMother = ancestry.filter(function(person) { 
 		return person.name in byName;
 	});
-	arrayDiff = withMother.map(function(person) {
+	arrayDiff = hasMother.map(function(person) {
 		return person.born - byName[person.mother].born;
 	});
 	return average(arrayDiff);
 }
+
+/**
+ * 
+ * Historical Life Expectancy
+ * 
+ * Compute and output the average age of the people in the ancestry data set per century.
+ * A person is assigned to a century by taking their year of death, dividing it by a hundred,
+ * and rounding it up, as in Math.ceil(person.died / 100).
+ * 
+ */
+
+function groupBy(array, groupingFunction)
+{
+	groupedArray = {};
+	array.forEach(groupingFunction.bind(null, groupedArray));
+	return groupedArray;
+}
+
+function historicalLifeExpectancy(ancestry)
+{
+	byCentury = groupBy(ancestry, function(byCentury,person){
+		var century = Math.ceil(person.died / 100);
+		if(typeof byCentury[century] === 'undefined')
+			byCentury[century] = [];
+		byCentury[century].push(person.died - person.born); 
+	});
+
+	for(century in byCentury) {
+		byCentury[century] = average(byCentury[century]);
+	}
+	return byCentury;
+}
+
+
+
+
