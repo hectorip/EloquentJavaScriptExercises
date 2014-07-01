@@ -6,7 +6,7 @@
  * Next, write a sum function that takes an array of numbers and returns the sum of these numbers.
  * Run:
  *  console.log(sum(range(1,10)));
- * and see whether it does indeed return 55;
+ * and see wether it does indeed return 55;
  * 
  * As a bonus assignment, modify your range function to take an optional third argument that
  * indicates the "step" value used to build up the array. If no step is given, the array elements
@@ -16,7 +16,8 @@
  *
  */
 
-function range(start, end, step) {
+function range(start, end, step)
+{
   var result=[];
   step = step || 1;
   evaluate = step > 0 ? function (current) { return (current <= end); } 
@@ -27,7 +28,8 @@ function range(start, end, step) {
  return result;
 }
 
-function sum(arrayToSum) {
+function sum(arrayToSum)
+{
 	var result = 0;
 	for(i in arrayToSum)
 		result += arrayToSum[i];

@@ -16,7 +16,7 @@ function deepEqual(value1, value2)
   
   if(value1 !== null && value2 !== null && typeof value1 == 'object' && typeof value2 == 'object') {
 
-    if(countProperties(value1) != countProperties(value2))
+    if(countProperties(value1) !== countProperties(value2))
       return false;
 
     for(property in value1) {
